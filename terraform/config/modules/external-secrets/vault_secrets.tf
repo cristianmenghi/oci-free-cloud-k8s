@@ -21,3 +21,30 @@ data:
 YAML
 }
 
+resource "local_file" "cluster_secret_store" {
+  filename = "${path.module}/../../../gitops/core/external-secrets-config/cluster-secret-store.yaml"
+  content  = <<-YAML
+    apiVersion: external-secrets.io/v1
+    kind: ClusterSecretStore
+    metadata:
+      name: oracle-vault
+    spec:
+      provider:
+        oracle:
+          vault: "${var.vault_id}"
+          region: "${var.region}"
+          auth:
+            user: "${oci_identity_user.external_secrets.id}"
+            tenancy: "${var.tenancy_id}"
+            principalType: UserPrincipal
+            secretRef:
+              privatekey:
+                name: oracle-vault
+                key: privateKey
+                namespace: external-secrets
+              fingerprint:
+                name: oracle-vault
+                key: fingerprint
+                namespace: external-secrets
+    YAML
+}
