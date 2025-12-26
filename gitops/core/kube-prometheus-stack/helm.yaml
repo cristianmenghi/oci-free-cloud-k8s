@@ -127,4 +127,4 @@ spec:
                   *Instance:* {{ .CommonLabels.pod }}
                   *Summary:* {{ .CommonAnnotations.summary }}
                   *Description:* {{ .CommonAnnotations.description }}
-                  [🔍 View in Grafana](https://monitoring.klangregen.de/alerting/list?search=state:firing)
+                  [🔍 View in Grafana](https://monitoring.menghi.uy/alerting/list?search=state:firing)
