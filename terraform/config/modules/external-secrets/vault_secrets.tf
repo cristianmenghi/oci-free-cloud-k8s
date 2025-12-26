@@ -22,7 +22,7 @@ YAML
 }
 
 resource "local_file" "cluster_secret_store" {
-  filename = "${path.module}/../../../gitops/core/external-secrets-config/cluster-secret-store.yaml"
+  filename = "${path.module}/../../../../gitops/core/external-secrets-config/cluster-secret-store.yaml"
   content  = <<-YAML
     apiVersion: external-secrets.io/v1
     kind: ClusterSecretStore
