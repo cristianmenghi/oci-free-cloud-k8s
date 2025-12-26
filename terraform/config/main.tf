@@ -5,6 +5,18 @@ module "externalsecrets" {
   tenancy_id     = var.tenancy_id
   region         = var.region
   vault_id       = var.vault_id
+  cloudflare_api_token = var.cloudflare_api_token
+  github_dex_client_id = var.github_dex_client_id
+  github_dex_client_secret = var.github_dex_client_secret
+  dex_grafana_client_secret = var.dex_grafana_client_secret
+  dex_s3_proxy_client_secret = var.dex_s3_proxy_client_secret
+  dex_envoy_client_secret = var.dex_envoy_client_secret
+  s3_proxy_access_key = var.s3_proxy_access_key
+  s3_proxy_secret_key = var.s3_proxy_secret_key
+  slack_api_url = var.slack_api_url
+  github_flux_webhook_token = var.github_flux_webhook_token
+  slack_fluxcd_token = var.slack_fluxcd_token
+  gh_token = var.gh_token
 
   depends_on = [
     module.fluxcd

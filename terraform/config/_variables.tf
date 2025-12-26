@@ -76,3 +76,72 @@ variable "gh_repository" {
   type        = string
   default     = "oci-free-cloud-k8s"
 }
+
+variable "github_dex_client_id" {
+  description = "GitHub OAuth Client ID for Dex"
+  type        = string
+  default     = ""
+}
+
+variable "github_dex_client_secret" {
+  description = "GitHub OAuth Client Secret for Dex"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "dex_grafana_client_secret" {
+  description = "Shared secret between Dex and Grafana"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "dex_s3_proxy_client_secret" {
+  description = "Shared secret between Dex and S3 Proxy"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "dex_envoy_client_secret" {
+  description = "Shared secret between Dex and Envoy Gateway"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "s3_proxy_access_key" {
+  description = "OCI S3 Access Key for S3 Proxy"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "s3_proxy_secret_key" {
+  description = "OCI S3 Secret Key for S3 Proxy"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "slack_api_url" {
+  description = "Slack Webhook URL for monitoring"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "github_flux_webhook_token" {
+  description = "FluxCD Webhook Token for GitHub"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "slack_fluxcd_token" {
+  description = "Slack Token for FluxCD Notifications"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
