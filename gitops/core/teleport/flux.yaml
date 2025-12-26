@@ -27,7 +27,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: teleport
-    - name: external-secrets-config
+    - name: external-secrets-sync
   sourceRef:
     kind: GitRepository
     name: flux-system

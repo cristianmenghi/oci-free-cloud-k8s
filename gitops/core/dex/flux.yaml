@@ -10,7 +10,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: external-secrets
-    - name: external-secrets-config
+    - name: external-secrets-sync
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -5,6 +5,7 @@ resources:
   - namespaces/flux.yaml
   - external-secrets/flux.yaml
   - external-secrets-config/flux.yaml
+  - external-secrets-sync/flux.yaml
   - external-dns/flux.yaml
   - cert-manager/flux.yaml
   - cert-manager/issuer/flux.yaml
