@@ -4,4 +4,3 @@ resources:
   - flux.yaml
   - helm.yaml
   - namespace.yaml
-  - secret.yaml

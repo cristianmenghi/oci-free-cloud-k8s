@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - flux.yaml
-  - secret.yaml
   - receiver.yaml
   - provider.yaml
   - alert.yaml

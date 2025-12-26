@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: teleport
 resources:
   - teleport-role.yaml
-  - secret.yaml
   - github-connector.yaml
