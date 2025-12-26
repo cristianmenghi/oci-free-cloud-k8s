@@ -23,5 +23,5 @@ spec:
       namespace: dex
     - apiVersion: external-secrets.io/v1
       kind: ExternalSecret
-      name: external-dns
+      name: external-dns-config
       namespace: external-dns
