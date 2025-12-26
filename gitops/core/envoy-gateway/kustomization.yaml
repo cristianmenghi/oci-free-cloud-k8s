@@ -3,6 +3,5 @@ kind: Kustomization
 namespace: envoy-gateway
 resources:
   - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/standard-install.yaml
-  - namespace.yaml
   - helm.yaml
   - flux.yaml
