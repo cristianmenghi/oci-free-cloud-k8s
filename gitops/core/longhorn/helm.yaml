@@ -2,6 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: longhorn
+  namespace: longhorn-system
 spec:
   interval: 5m
   url: https://charts.longhorn.io
@@ -10,9 +11,11 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: longhorn
+  namespace: longhorn-system
 spec:
   interval: 10m
-  timeout: 5m
+  timeout: 10m
+  targetNamespace: longhorn-system
   chart:
     spec:
       chart: longhorn
@@ -20,8 +23,17 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: longhorn
+        namespace: longhorn-system
       interval: 5m
   releaseName: longhorn
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
   values:
     image:
       longhorn:
@@ -37,9 +49,24 @@ spec:
           repository: docker.io/longhornio/longhorn-share-manager
         backingImageManager:
           repository: docker.io/longhornio/backing-image-manager
+      csi:
+        attacher:
+          repository: docker.io/longhornio/csi-attacher
+        provisioner:
+          repository: docker.io/longhornio/csi-provisioner
+        nodeDriverRegistrar:
+          repository: docker.io/longhornio/csi-node-driver-registrar
+        resizer:
+          repository: docker.io/longhornio/csi-resizer
+        snapshotter:
+          repository: docker.io/longhornio/csi-snapshotter
+        livenessProbe:
+          repository: docker.io/longhornio/livenessprobe
     defaultSettings:
       storageMinimalAvailablePercentage: 10
+      defaultReplicaCount: 2
     persistence:
+      defaultClass: true
       defaultClassReplicaCount: 2
     ingress:
       enabled: false

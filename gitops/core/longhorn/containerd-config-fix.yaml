@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: containerd-config-fix
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      name: containerd-config-fix
+  template:
+    metadata:
+      labels:
+        name: containerd-config-fix
+    spec:
+      hostPID: true
+      hostNetwork: true
+      initContainers:
+      - name: fix-containerd-config
+        image: docker.io/library/busybox:1.36
+        command:
+        - sh
+        - -c
+        - |
+          cat > /host/etc/containers/registries.conf.d/00-unqualified-search.conf << 'EOF'
+          unqualified-search-registries = ["docker.io"]
+          
+          [[registry]]
+          prefix = "docker.io"
+          location = "docker.io"
+          insecure = false
+          EOF
+          
+          echo "Configuration updated. Restarting containerd..."
+          nsenter -t 1 -m -u -i -n systemctl restart containerd || true
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: etc-containers
+          mountPath: /host/etc/containers
+      containers:
+      - name: pause
+        image: docker.io/google-containers/pause:3.9
+      volumes:
+      - name: etc-containers
+        hostPath:
+          path: /etc/containers
+          type: DirectoryOrCreate
+      tolerations:
+      - operator: Exists
