@@ -23,6 +23,20 @@ spec:
       interval: 5m
   releaseName: longhorn
   values:
+    image:
+      longhorn:
+        manager:
+          repository: docker.io/longhornio/longhorn-manager
+        engine:
+          repository: docker.io/longhornio/longhorn-engine
+        ui:
+          repository: docker.io/longhornio/longhorn-ui
+        instanceManager:
+          repository: docker.io/longhornio/longhorn-instance-manager
+        shareManager:
+          repository: docker.io/longhornio/longhorn-share-manager
+        backingImageManager:
+          repository: docker.io/longhornio/backing-image-manager
     defaultSettings:
       storageMinimalAvailablePercentage: 10
     persistence:
