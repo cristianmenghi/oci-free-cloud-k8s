@@ -12,3 +12,12 @@ spec:
     name: flux-system
   dependsOn:
     - name: external-secrets-config
+  healthChecks:
+    - apiVersion: external-secrets.io/v1
+      kind: ExternalSecret
+      name: dex-github-connector
+      namespace: dex
+    - apiVersion: external-secrets.io/v1
+      kind: ExternalSecret
+      name: dex-grafana-client
+      namespace: dex
