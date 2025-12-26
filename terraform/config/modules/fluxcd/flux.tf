@@ -21,12 +21,13 @@ resource "kubernetes_secret_v1" "git_auth" {
     namespace = kubernetes_namespace_v1.flux_system.id
   }
 
-  data = {
-    username                = null
-    password                = null
+  data = var.github_app_id != "" ? {
     githubAppID             = "${var.github_app_id}"
     githubAppInstallationID = "${var.github_app_installation_id}"
     githubAppPrivateKey     = "${var.github_app_pem}"
+    } : {
+    username = "git"
+    password = "${var.gh_token}"
   }
 
   type = "Opaque"
@@ -51,7 +52,7 @@ instance:
     url: ${var.git_url}
     path: gitops/core
     ref: "refs/heads/main"
-    provider: github
+    provider: ${var.github_app_id != "" ? "github" : "generic"}
     pullSecret: flux-instance-config
 YAML
   ]

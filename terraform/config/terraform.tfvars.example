@@ -24,3 +24,12 @@ cloudflare_zone_id   = ""
 # GitHub
 gh_org        = "cristianmenghi"
 gh_repository = "oci-free-cloud-k8s"
+
+# GitHub Auth (Optional: Fill these only if you want to use a GitHub App instead of a PAT)
+# github_app_id              = ""
+# github_app_installation_id = ""
+# github_app_pem             = <<-EOT
+# -----BEGIN RSA PRIVATE KEY-----
+# ...
+# -----END RSA PRIVATE KEY-----
+# EOT
