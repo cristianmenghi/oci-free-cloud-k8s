@@ -61,3 +61,15 @@ variable "cloudflare_zone_id" {
   description = "Cloudflare Zone ID"
   type        = string
 }
+
+variable "gh_org" {
+  description = "GitHub Organization/User"
+  type        = string
+  default     = "nce"
+}
+
+variable "gh_repository" {
+  description = "GitHub Repository"
+  type        = string
+  default     = "oci-free-cloud-k8s"
+}

@@ -20,3 +20,7 @@ EOT
 # Cloudflare
 cloudflare_api_token = ""
 cloudflare_zone_id   = ""
+
+# GitHub
+gh_org        = "cristianmenghi"
+gh_repository = "oci-free-cloud-k8s"

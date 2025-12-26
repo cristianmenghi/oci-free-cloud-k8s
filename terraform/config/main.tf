@@ -3,6 +3,7 @@ module "externalsecrets" {
 
   compartment_id = var.compartment_id
   tenancy_id     = var.tenancy_id
+  region         = var.region
   vault_id       = var.vault_id
 
   depends_on = [
@@ -13,6 +14,9 @@ module "externalsecrets" {
 module "fluxcd" {
   source = "./modules/fluxcd"
 
+  gh_org                     = var.gh_org
+  gh_repository              = var.gh_repository
+  git_url                    = "https://github.com/${var.gh_org}/${var.gh_repository}.git"
   gh_token                   = var.gh_token
   compartment_id             = var.compartment_id
   github_app_id              = var.github_app_id
