@@ -90,21 +90,21 @@ variable "github_dex_client_secret" {
   default     = ""
 }
 
-variable "dex_grafana_client_secret" {
+variable "dex_grafana_client" {
   description = "Shared secret between Dex and Grafana"
   type        = string
   sensitive   = true
   default     = ""
 }
 
-variable "dex_s3_proxy_client_secret" {
+variable "dex_s3_proxy_client" {
   description = "Shared secret between Dex and S3 Proxy"
   type        = string
   sensitive   = true
   default     = ""
 }
 
-variable "dex_envoy_client_secret" {
+variable "dex_envoy_client" {
   description = "Shared secret between Dex and Envoy Gateway"
   type        = string
   sensitive   = true

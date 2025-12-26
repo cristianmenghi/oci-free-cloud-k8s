@@ -8,9 +8,9 @@ module "externalsecrets" {
   cloudflare_api_token = var.cloudflare_api_token
   github_dex_client_id = var.github_dex_client_id
   github_dex_client_secret = var.github_dex_client_secret
-  dex_grafana_client_secret = var.dex_grafana_client_secret
-  dex_s3_proxy_client_secret = var.dex_s3_proxy_client_secret
-  dex_envoy_client_secret = var.dex_envoy_client_secret
+  dex_grafana_client_secret = var.dex_grafana_client
+  dex_s3_proxy_client_secret = var.dex_s3_proxy_client
+  dex_envoy_client_secret = var.dex_envoy_client
   s3_proxy_access_key = var.s3_proxy_access_key
   s3_proxy_secret_key = var.s3_proxy_secret_key
   slack_api_url = var.slack_api_url

@@ -118,7 +118,7 @@ resource "oci_vault_secret" "github_dex_client_secret" {
 resource "oci_vault_secret" "dex_grafana_client" {
   count          = var.dex_grafana_client_secret != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "dex-grafana-client"
+  secret_name    = "dex-grafana-client-v2"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -130,7 +130,7 @@ resource "oci_vault_secret" "dex_grafana_client" {
 resource "oci_vault_secret" "dex_s3_proxy_client_secret" {
   count          = var.dex_s3_proxy_client_secret != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "dex-s3-proxy-client-secret"
+  secret_name    = "dex-s3-proxy-client-secret-v2"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -142,7 +142,7 @@ resource "oci_vault_secret" "dex_s3_proxy_client_secret" {
 resource "oci_vault_secret" "dex_envoy_client_secret" {
   count          = var.dex_envoy_client_secret != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "dex-envoy-client-secret"
+  secret_name    = "dex-envoy-client-secret-v2"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
