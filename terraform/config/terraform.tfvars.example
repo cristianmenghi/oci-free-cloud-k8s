@@ -1,0 +1,22 @@
+compartment_id = ""
+region         = "eu-frankfurt-1"
+tenancy_id     = ""
+vault_id       = ""
+
+# Subnet and Node Pool IDs (from infra output)
+public_subnet_id = ""
+node_pool_id     = ""
+
+# Github / FluxCD
+gh_token                   = ""
+github_app_id              = ""
+github_app_installation_id = ""
+github_app_pem             = <<-EOT
+-----BEGIN RSA PRIVATE KEY-----
+...
+-----END RSA PRIVATE KEY-----
+EOT
+
+# Cloudflare
+cloudflare_api_token = ""
+cloudflare_zone_id   = ""

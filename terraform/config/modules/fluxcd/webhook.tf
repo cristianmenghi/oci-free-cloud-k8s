@@ -20,7 +20,7 @@ resource "oci_vault_secret" "test_secret" {
   #Required
   compartment_id = var.compartment_id
   key_id         = data.oci_kms_keys.existing_key.keys[0].id
-  secret_name    = "github-flux-webhook-token"
+  secret_name    = "github-flux-webhook-token-v2"
   vault_id       = data.oci_kms_vaults.existing_vault.vaults[0].id
 
   secret_content {

@@ -2,7 +2,7 @@
 
 resource "oci_identity_dynamic_group" "grafana_instances" {
   #Required
-  compartment_id = var.compartment_id
+  compartment_id = var.tenancy_id
   description    = "Grafana Monitoring"
   name           = "grafana"
 
@@ -12,7 +12,7 @@ resource "oci_identity_dynamic_group" "grafana_instances" {
 
 resource "oci_identity_policy" "grafana" {
   #Required
-  compartment_id = var.compartment_id
+  compartment_id = var.tenancy_id
   description    = "allow metrics"
   name           = "Monitoring"
   statements = [

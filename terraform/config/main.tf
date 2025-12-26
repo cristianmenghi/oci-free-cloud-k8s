@@ -30,4 +30,5 @@ module "grafana" {
   source = "./modules/grafana"
 
   compartment_id = var.compartment_id
+  tenancy_id     = var.tenancy_id
 }

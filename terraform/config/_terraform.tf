@@ -3,7 +3,7 @@ terraform {
   # this requires tf >=1.12
   # see previous versions of this file for backwards compatibilyt
   backend "oci" {
-    namespace = "frrwy4uskhkj"
+    namespace = "idbqflzkrchu"
     bucket    = "terraform-states"
     key       = "config/terraform.tfstate"
   }
@@ -26,6 +26,11 @@ terraform {
     tls = {
       source  = "hashicorp/tls"
       version = ">= 4.0.0"
+    }
+
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 5"
     }
   }
 }

@@ -4,21 +4,21 @@ provider "github" {
 }
 
 resource "helm_release" "flux_operator" {
-  depends_on = [kubernetes_namespace.flux_system]
+  depends_on = [kubernetes_namespace_v1.flux_system]
 
   name       = "flux-operator"
-  namespace  = kubernetes_namespace.flux_system.id
+  namespace  = kubernetes_namespace_v1.flux_system.id
   repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
   chart      = "flux-operator"
   wait       = true
 }
 
-resource "kubernetes_secret" "git_auth" {
-  depends_on = [kubernetes_namespace.flux_system]
+resource "kubernetes_secret_v1" "git_auth" {
+  depends_on = [kubernetes_namespace_v1.flux_system]
 
   metadata {
     name      = "flux-instance-config"
-    namespace = kubernetes_namespace.flux_system.id
+    namespace = kubernetes_namespace_v1.flux_system.id
   }
 
   data = {
@@ -37,7 +37,7 @@ resource "helm_release" "flux_instance" {
   depends_on = [helm_release.flux_operator]
 
   name       = "flux"
-  namespace  = kubernetes_namespace.flux_system.id
+  namespace  = kubernetes_namespace_v1.flux_system.id
   repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
   chart      = "flux-instance"
 

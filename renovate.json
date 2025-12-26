@@ -12,7 +12,7 @@
     ]
   },
   "groupName": "all",
-  "timezone": "Europe/Berlin",
+  "timezone": "America/Montevideo",
   "schedule": [
     "before 3am on Monday"
   ],
