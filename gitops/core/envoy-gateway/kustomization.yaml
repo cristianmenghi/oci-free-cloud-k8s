@@ -5,7 +5,4 @@ resources:
   - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/standard-install.yaml
   - namespace.yaml
   - helm.yaml
-  - envoyproxy.yaml
-  - gateway.yaml
-  - certificate.yaml
-  - secret.yaml
+  - flux.yaml
