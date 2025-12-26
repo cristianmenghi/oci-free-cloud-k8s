@@ -25,6 +25,7 @@ spec:
   prune: true
   dependsOn:
     - name: teleport
+    - name: external-secrets-config
   sourceRef:
     kind: GitRepository
     name: flux-system
