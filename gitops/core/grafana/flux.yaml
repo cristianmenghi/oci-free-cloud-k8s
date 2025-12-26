@@ -8,6 +8,7 @@ spec:
   path: ./gitops/core/grafana
   prune: true
   dependsOn:
+    - name: namespaces
     - name: external-secrets
     - name: external-secrets-config
   sourceRef:

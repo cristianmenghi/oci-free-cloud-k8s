@@ -8,6 +8,7 @@ spec:
   path: ./gitops/core/teleport
   prune: true
   dependsOn:
+    - name: namespaces
     - name: external-dns
     - name: cert-manager
   sourceRef:
@@ -24,6 +25,7 @@ spec:
   path: ./gitops/core/teleport/rbac/
   prune: true
   dependsOn:
+    - name: namespaces
     - name: teleport
     - name: external-secrets-config
   sourceRef:

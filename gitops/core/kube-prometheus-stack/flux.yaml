@@ -7,6 +7,7 @@ spec:
   path: ./gitops/core/kube-prometheus-stack
   prune: true
   dependsOn:
+    - name: namespaces
     - name: external-secrets
     - name: cert-manager
     - name: longhorn

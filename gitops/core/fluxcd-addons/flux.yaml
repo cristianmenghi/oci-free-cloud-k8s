@@ -8,6 +8,7 @@ spec:
   path: ./gitops/core/fluxcd-addons
   prune: true
   dependsOn:
+    - name: namespaces
     - name: external-secrets
     - name: external-secrets-config
   sourceRef:
