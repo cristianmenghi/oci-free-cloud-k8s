@@ -21,3 +21,7 @@ spec:
       kind: ExternalSecret
       name: dex-grafana-client
       namespace: dex
+    - apiVersion: external-secrets.io/v1
+      kind: ExternalSecret
+      name: external-dns
+      namespace: external-dns
