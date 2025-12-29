@@ -57,7 +57,7 @@ spec:
           oracle:
             bucket:
               name: tourenbuch
-              region: "us-ashburn-1
+              region: "us-ashburn-1"
               s3Endpoint:
                 env: S3_ENDPOINT
               credentials:
