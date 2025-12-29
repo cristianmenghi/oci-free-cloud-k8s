@@ -68,7 +68,7 @@ variable "cloudflare_zone_id" {
 variable "gh_org" {
   description = "GitHub Organization/User"
   type        = string
-  default     = "nce"
+  default     = "cristianmenghi"
 }
 
 variable "gh_repository" {
