@@ -61,7 +61,7 @@ spec:
             bucket:
               name: tourenbuch
               region: "us-ashburn-1"
-               # s3Endpoint injected via S3PROXY_TARGETS_ORACLE_BUCKET_S3ENDPOINT
+              s3Endpoint: "https://idbqflzkrchu.compat.objectstorage.us-ashburn-1.oraclecloud.com"
               credentials:
                 accessKey:
                   env: AWS_ACCESS_KEY_ID
