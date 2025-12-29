@@ -36,3 +36,8 @@ variable "vault_id" {
   description = "OCI Vault OCID"
   type        = string
 }
+
+variable "tenancy_ocid" {
+  description = "Tenancy OCID"
+  type        = string
+}

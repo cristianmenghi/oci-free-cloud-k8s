@@ -11,13 +11,14 @@ resource "oci_objectstorage_bucket" "tourenbuch" {
 }
 
 resource "oci_identity_user" "tourenbuch_user" {
-  compartment_id = var.compartment_id
+  compartment_id = var.tenancy_ocid
   name           = "tourenbuch-s3-user"
   description    = "User for Tourenbuch S3 access"
+  email          = "tourenbuch-s3@menghi.uy"
 }
 
 resource "oci_identity_group" "tourenbuch_group" {
-  compartment_id = var.compartment_id
+  compartment_id = var.tenancy_ocid
   name           = "tourenbuch-s3-group"
   description    = "Group for Tourenbuch S3 access"
 }
@@ -28,7 +29,7 @@ resource "oci_identity_user_group_membership" "tourenbuch_membership" {
 }
 
 resource "oci_identity_policy" "tourenbuch_policy" {
-  compartment_id = var.compartment_id
+  compartment_id = var.tenancy_ocid
   name           = "tourenbuch-s3-policy"
   description    = "Policy for Tourenbuch S3 access"
 
