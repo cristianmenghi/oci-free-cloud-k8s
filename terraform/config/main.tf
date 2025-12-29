@@ -18,9 +18,6 @@ module "externalsecrets" {
   slack_fluxcd_token = var.slack_fluxcd_token
   gh_token = var.gh_token
 
-  depends_on = [
-    module.fluxcd
-  ]
 }
 
 module "fluxcd" {

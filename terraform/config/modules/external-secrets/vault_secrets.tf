@@ -82,7 +82,7 @@ locals {
 resource "oci_vault_secret" "cloudflare_api_token" {
   count          = var.cloudflare_api_token != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "cloudflare-api-token"
+  secret_name    = "cloudflare-api-token-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -94,7 +94,7 @@ resource "oci_vault_secret" "cloudflare_api_token" {
 resource "oci_vault_secret" "github_dex_client_id" {
   count          = var.github_dex_client_id != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "GITHUB_DEX_CLIENT_ID"
+  secret_name    = "GITHUB_DEX_CLIENT_ID-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -106,7 +106,7 @@ resource "oci_vault_secret" "github_dex_client_id" {
 resource "oci_vault_secret" "github_dex_client_secret" {
   count          = var.github_dex_client_secret != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "GITHUB_DEX_CLIENT_SECRET"
+  secret_name    = "GITHUB_DEX_CLIENT_SECRET-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -118,7 +118,7 @@ resource "oci_vault_secret" "github_dex_client_secret" {
 resource "oci_vault_secret" "dex_grafana_client" {
   count          = var.dex_grafana_client_secret != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "dex-grafana-client-v2"
+  secret_name    = "dex-grafana-client-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -130,7 +130,7 @@ resource "oci_vault_secret" "dex_grafana_client" {
 resource "oci_vault_secret" "dex_s3_proxy_client_secret" {
   count          = var.dex_s3_proxy_client_secret != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "dex-s3-proxy-client-secret-v2"
+  secret_name    = "dex-s3-proxy-client-secret-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -142,7 +142,7 @@ resource "oci_vault_secret" "dex_s3_proxy_client_secret" {
 resource "oci_vault_secret" "dex_envoy_client_secret" {
   count          = var.dex_envoy_client_secret != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "dex-envoy-client-secret-v2"
+  secret_name    = "dex-envoy-client-secret-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -154,7 +154,7 @@ resource "oci_vault_secret" "dex_envoy_client_secret" {
 resource "oci_vault_secret" "s3_proxy_access_key" {
   count          = var.s3_proxy_access_key != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "s3-proxy-user-access_key"
+  secret_name    = "s3-proxy-user-access_key-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -166,7 +166,7 @@ resource "oci_vault_secret" "s3_proxy_access_key" {
 resource "oci_vault_secret" "s3_proxy_secret_key" {
   count          = var.s3_proxy_secret_key != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "s3-proxy-user-secret_key"
+  secret_name    = "s3-proxy-user-secret_key-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -178,7 +178,7 @@ resource "oci_vault_secret" "s3_proxy_secret_key" {
 resource "oci_vault_secret" "slack_api_url" {
   count          = var.slack_api_url != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "SLACK_API_URL"
+  secret_name    = "SLACK_API_URL-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -190,7 +190,7 @@ resource "oci_vault_secret" "slack_api_url" {
 resource "oci_vault_secret" "github_flux_webhook_token" {
   count          = var.github_flux_webhook_token != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "github-flux-webhook-token"
+  secret_name    = "github-flux-webhook-token-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -202,7 +202,7 @@ resource "oci_vault_secret" "github_flux_webhook_token" {
 resource "oci_vault_secret" "github_fluxcd_token" {
   count          = var.gh_token != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "github-fluxcd-token"
+  secret_name    = "github-fluxcd-token-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
@@ -214,7 +214,7 @@ resource "oci_vault_secret" "github_fluxcd_token" {
 resource "oci_vault_secret" "slack_fluxcd_token" {
   count          = var.slack_fluxcd_token != "" ? 1 : 0
   compartment_id = var.compartment_id
-  secret_name    = "slack-fluxcd-token"
+  secret_name    = "slack-fluxcd-token-v3"
   vault_id       = var.vault_id
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
