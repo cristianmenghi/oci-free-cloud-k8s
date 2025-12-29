@@ -31,3 +31,8 @@ variable "kubernetes_worker_nodes" {
 
   default = 2
 }
+
+variable "vault_id" {
+  description = "OCI Vault OCID"
+  type        = string
+}

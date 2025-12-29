@@ -4,3 +4,4 @@ namespace: s3-proxy
 resources:
   - helm.yaml
   - httproute.yaml
+  - external-secret.yaml

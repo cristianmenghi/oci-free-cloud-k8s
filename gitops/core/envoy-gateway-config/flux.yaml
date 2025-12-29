@@ -13,3 +13,7 @@ spec:
   dependsOn:
     - name: envoy-gateway
     - name: external-secrets-sync
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: oci-lb-sg-id

@@ -17,3 +17,17 @@ output "node_pool_id" {
 output "kubernetes_version" {
   value = var.kubernetes_version
 }
+
+output "s3_access_key" {
+  value     = oci_identity_customer_secret_key.tourenbuch_key.id
+  sensitive = true
+}
+
+output "s3_secret_key" {
+  value     = oci_identity_customer_secret_key.tourenbuch_key.key
+  sensitive = true
+}
+
+output "s3_endpoint" {
+  value = "https://${data.oci_objectstorage_namespace.ns.namespace}.compat.objectstorage.${var.region}.oraclecloud.com"
+}

@@ -1,7 +1,8 @@
 locals {
   namespaces = [
     "envoy-gateway",
-    "teleport"
+    "teleport",
+    "flux-system"
   ]
 }
 resource "kubectl_manifest" "lb-sg-ns" {
@@ -34,8 +35,13 @@ metadata:
   name: oci-lb-sg-id
   namespace: ${each.value}
 data:
+  LB_NSG_ID: "${oci_core_network_security_group.ingress_lb.id}"
   values.yaml: |
+    proxy:
+      annotations:
+        service:
+          oci-network-load-balancer.oraclecloud.com/oci-network-security-groups: "${oci_core_network_security_group.ingress_lb.id}"
     oci:
-      lbsecuritygroup: ${oci_core_network_security_group.ingress_lb.id}
+      lbsecuritygroup: "${oci_core_network_security_group.ingress_lb.id}"
 YAML
 }

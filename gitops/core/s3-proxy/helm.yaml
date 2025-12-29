@@ -25,7 +25,7 @@ spec:
   values:
     envFrom:
       - secretRef:
-          name: s3-proxy-credentials
+          name: s3-proxy-creds
       - secretRef:
           name: s3-proxy-dex-client
     ingress:
@@ -57,8 +57,9 @@ spec:
           oracle:
             bucket:
               name: tourenbuch
-              region: eu-frankfurt-1
-              s3Endpoint: https://frrwy4uskhkj.compat.objectstorage.eu-frankfurt-1.oci.customer-oci.com
+              region: "us-ashburn-1
+              s3Endpoint:
+                env: S3_ENDPOINT
               credentials:
                 accessKey:
                   env: AWS_ACCESS_KEY_ID
