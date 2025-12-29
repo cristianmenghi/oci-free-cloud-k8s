@@ -28,6 +28,9 @@ spec:
           name: s3-proxy-creds
       - secretRef:
           name: s3-proxy-dex-client
+    env:
+      - name: S3PROXY_TARGETS_ORACLE_BUCKET_S3ENDPOINT
+        value: "$(S3_ENDPOINT)"
     ingress:
       enabled: false
     prometheus:
@@ -58,8 +61,7 @@ spec:
             bucket:
               name: tourenbuch
               region: "us-ashburn-1"
-              s3Endpoint:
-                env: S3_ENDPOINT
+               # s3Endpoint injected via S3PROXY_TARGETS_ORACLE_BUCKET_S3ENDPOINT
               credentials:
                 accessKey:
                   env: AWS_ACCESS_KEY_ID
