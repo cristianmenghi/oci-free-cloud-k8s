@@ -14,7 +14,7 @@ metadata:
   namespace: grafana
   annotations:
     force: "true"
-    helm.toolkit.fluxcd.io/restartedAt: "2025-12-30T00:00:00Z"
+    helm.toolkit.fluxcd.io/restartedAt: "2025-12-28T00:00:00Z"
 spec:
   interval: 10m
   timeout: 5m
