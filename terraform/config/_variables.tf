@@ -6,8 +6,6 @@ variable "compartment_id" {
 variable "region" {
   description = "OCI region"
   type        = string
-
-  default = ""us-ashburn-1"
 }
 
 variable "public_subnet_id" {
