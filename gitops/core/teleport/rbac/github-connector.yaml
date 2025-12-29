@@ -10,7 +10,7 @@ spec:
   endpoint_url: ""
   redirect_url: https://teleport.menghi.uy/v1/webapi/github/callback
   teams_to_roles:
-    - organization: cristianmenghi
+    - organization: menghi-uy
       roles:
         - editor
         - admin
