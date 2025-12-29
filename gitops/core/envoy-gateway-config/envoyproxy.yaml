@@ -8,6 +8,8 @@ spec:
     kubernetes:
       envoyService:
         annotations:
+          external-dns.alpha.kubernetes.io/hostname: "login.menghi.uy,monitoring.menghi.uy,storage.menghi.uy,prometheus.menghi.uy"
+          service.beta.kubernetes.io/oci-load-balancer-internal: "false"
           oci.oraclecloud.com/oci-network-security-groups: ${LB_NSG_ID}
           service.beta.kubernetes.io/oci-load-balancer-shape: flexible
           service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
