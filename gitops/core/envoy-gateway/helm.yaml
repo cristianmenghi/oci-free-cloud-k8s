@@ -25,5 +25,6 @@ spec:
   releaseName: envoy-gateway
   values:
     config:
-      extensionApis:
-        enableBackend: true
+      envoyGateway:
+        extensionApis:
+          enableBackend: true
