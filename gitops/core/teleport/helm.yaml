@@ -47,5 +47,7 @@ spec:
     proxy:
       highAvailability:
         replicaCount: 1
+      tls:
+        existingSecretName: teleport-tls
       service:
         type: ClusterIP
