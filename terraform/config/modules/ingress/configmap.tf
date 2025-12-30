@@ -36,7 +36,7 @@ metadata:
   namespace: ${each.value}
 data:
   LB_NSG_ID: "${oci_core_network_security_group.ingress_lb.id}"
-  values.yaml: |
+  VALUES_YAML: |
     proxy:
       annotations:
         service:
