@@ -23,3 +23,7 @@ spec:
         name: envoy
       interval: 5m
   releaseName: envoy-gateway
+  values:
+    config:
+      extensionApis:
+        enableBackend: true
