@@ -10,6 +10,10 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "teleport.menghi.uy,login.menghi.uy,monitoring.menghi.uy,storage.menghi.uy,prometheus.menghi.uy"
           service.beta.kubernetes.io/oci-load-balancer-internal: "false"
+          # Health check configuration
+          service.beta.kubernetes.io/oci-load-balancer-health-check-protocol: "TCP"
+          service.beta.kubernetes.io/oci-load-balancer-health-check-port: "443"
+          # Shape and NSG
           oci.oraclecloud.com/oci-network-security-groups: ${LB_NSG_ID}
           service.beta.kubernetes.io/oci-load-balancer-shape: flexible
           service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
