@@ -24,10 +24,6 @@ spec:
         name: teleport
       interval: 5m
   releaseName: teleport-cluster
-  valuesFrom:
-    - kind: ConfigMap
-      name: oci-lb-sg-id
-      valuesKey: values.yaml
   values:
     chartMode: standalone
     clusterName: teleport.menghi.uy
@@ -44,10 +40,6 @@ spec:
       secondFactor: on
     highAvailability:
       replicaCount: 1
-      certManager:
-        enabled: true
-        issuerName: letsencrypt
-        issuerKind: ClusterIssuer
     operator:
       enabled: true
     ingress:
@@ -56,10 +48,4 @@ spec:
       highAvailability:
         replicaCount: 1
       service:
-        type: LoadBalancer
-      annotations:
-        service:
-          external-dns.alpha.kubernetes.io/hostname: teleport.menghi.uy
-          oci.oraclecloud.com/load-balancer-type: "nlb"
-          #          this does not work; the teleport chart doesn't support tpl
-          #          oci-network-load-balancer.oraclecloud.com/oci-network-security-groups: "{{ tpl .Values.oci.lbsecuritygroup . }}"
+        type: ClusterIP
