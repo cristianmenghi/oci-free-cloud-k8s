@@ -15,5 +15,6 @@ spec:
             type: PathPrefix
             value: "/"
       backendRefs:
-        - name: teleport-cluster
-          port: 443
+        - group: gateway.envoyproxy.io
+          kind: Backend
+          name: teleport

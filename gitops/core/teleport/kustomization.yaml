@@ -4,4 +4,4 @@ resources:
   - flux.yaml
   - helm.yaml
   - httproute.yaml
-  - backend-tls-policy.yaml
+  - backend.yaml

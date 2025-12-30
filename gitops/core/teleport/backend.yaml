@@ -1,0 +1,12 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: teleport
+  namespace: teleport
+spec:
+  endpoints:
+    - fqdn:
+        hostname: teleport-cluster.teleport.svc.cluster.local
+        port: 443
+  tls:
+    insecureSkipVerify: true
