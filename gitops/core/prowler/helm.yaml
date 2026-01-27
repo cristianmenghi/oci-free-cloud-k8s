@@ -1,0 +1,32 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: prowler
+  namespace: prowler
+spec:
+  interval: 5m
+  url: https://promptlylabs.github.io/prowler-helm-chart/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prowler
+  namespace: prowler
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: prowler
+      version: "0.0.2"
+      sourceRef:
+        kind: HelmRepository
+        name: prowler
+      interval: 5m
+  releaseName: prowler
+  values:
+    # Basic configuration. Users might need to add OCI credentials here.
+    # See: https://docs.prowler.com/projects/prowler-open-source/en/latest/getting-started/deployment/#kubernetes
+    service:
+      type: ClusterIP
+      port: 80
