@@ -12,5 +12,4 @@ resources:
   - s3-proxy.yaml
   - dex.yaml
   - external-secrets.yaml
-  - prowler.yaml
 
