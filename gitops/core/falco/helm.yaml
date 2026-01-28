@@ -40,12 +40,12 @@ spec:
               values:
               - arm64
 
-    # CRÍTICO: Solo montar el socket de CRI-O
-    # Esto previene que Falco intente conectarse a sockets inexistentes
-    mounts:
-      docker_socket: false
-      containerd_socket: false
-      crio_socket: true
+    # Deshabilitar Docker y Containerd (solo usar CRI-O)
+    docker:
+      enabled: false
+    
+    containerd:
+      enabled: false
 
     # Configuración de Falco
     falco:
@@ -53,13 +53,12 @@ spec:
       driver:
         kind: ebpf
       
-      # Métricas nativas de Prometheus (reemplazan falco-exporter)
+      # Métricas nativas de Prometheus (sin output_format)
       metrics:
         enabled: true
         interval: 15s
-        output_format: prometheus
       
-      # Deshabilitar gRPC (no lo necesitamos con métricas nativas)
+      # Deshabilitar gRPC
       grpc:
         enabled: false
       
