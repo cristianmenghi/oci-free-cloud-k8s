@@ -29,38 +29,50 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    # 1. Affinity for the DaemonSet (TOP LEVEL)
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/arch
+              operator: In
+              values:
+              - arm64
+
     falco:
-      # Use eBPF driver for OCI ARM nodes
+      # 2. Main Falco Configuration
       driver:
         kind: ebpf
       
-      # Configure CRI-O socket for Oracle Cloud (Default for OCI)
-      # This helps avoid the panic in criEngine
+      # explicit CRI-O socket
       container_engines:
+        docker:
+          enabled: false
         cri:
           enabled: true
           sockets:
             - /run/crio/crio.sock
+        containerd:
+          enabled: false
       
-      # Enable gRPC for falco-exporter
+      # 3. Enable Built-in Prometheus Metrics (Replaces falco-exporter)
+      metrics:
+        enabled: true
+        interval: 15s
+        output_format: prometheus
+      
+      # 4. Disable gRPC for now to avoid TLS errors/panic 
+      # (Metrics don't need it)
       grpc:
-        enabled: true
-        bind_address: "0.0.0.0:5060"
+        enabled: false
       
-      # Standard output to stdout
-      stdout_output:
-        enabled: true
-      
-      # Affinity for ARM64 (Oracle Cloud Free Tier)
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: kubernetes.io/arch
-                operator: In
-                values:
-                - arm64
-
       grpc_output:
         enabled: false
+
+      stdout_output:
+        enabled: true
+
+    # 5. ServiceMonitor for the built-in metrics
+    serviceMonitor:
+      enabled: true
