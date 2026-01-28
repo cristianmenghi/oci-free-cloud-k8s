@@ -44,6 +44,10 @@ spec:
     driver:
       kind: ebpf
 
+    # Forzar imagen Falco 0.42.0 (bug fix)
+    image:
+      tag: 0.42.0
+
     # Deshabilitar Docker y Containerd (solo usar CRI-O)
     docker:
       enabled: false
