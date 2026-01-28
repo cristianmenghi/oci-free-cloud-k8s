@@ -29,37 +29,38 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    # Use eBPF driver for OCI ARM nodes
-    driver:
-      kind: ebpf
-    
-    # Configure CRI-O socket for Oracle Cloud (Default for OCI)
-    # This helps avoid the panic in criEngine
-    container_engines:
-      cri:
+    falco:
+      # Use eBPF driver for OCI ARM nodes
+      driver:
+        kind: ebpf
+      
+      # Configure CRI-O socket for Oracle Cloud (Default for OCI)
+      # This helps avoid the panic in criEngine
+      container_engines:
+        cri:
+          enabled: true
+          sockets:
+            - /run/crio/crio.sock
+      
+      # Enable gRPC for falco-exporter
+      grpc:
         enabled: true
-        sockets:
-          - /run/crio/crio.sock
-    
-    # Enable gRPC for falco-exporter
-    grpc:
-      enabled: true
-      bind_address: "0.0.0.0:5060"
-    
-    # Standard output to stdout
-    stdout_output:
-      enabled: true
-    
-    # Affinity for ARM64 (Oracle Cloud Free Tier)
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-          - matchExpressions:
-            - key: kubernetes.io/arch
-              operator: In
-              values:
-              - arm64
+        bind_address: "0.0.0.0:5060"
+      
+      # Standard output to stdout
+      stdout_output:
+        enabled: true
+      
+      # Affinity for ARM64 (Oracle Cloud Free Tier)
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
 
-    grpc_output:
-      enabled: false
+      grpc_output:
+        enabled: false
