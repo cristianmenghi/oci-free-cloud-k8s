@@ -12,4 +12,5 @@ resources:
   - s3-proxy.yaml
   - dex.yaml
   - external-secrets.yaml
+  - security-system.yaml
 
