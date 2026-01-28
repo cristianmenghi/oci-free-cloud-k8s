@@ -51,13 +51,13 @@ spec:
         kind: ebpf
       
       # 3. Corrected container_engines block (removed 'containerd' key)
-      container_engines:
-        docker:
-          enabled: false
+      engines:
         cri:
           enabled: true
           sockets:
             - /run/crio/crio.sock
+          containerd:
+    enabled: false
       
       metrics:
         enabled: true
