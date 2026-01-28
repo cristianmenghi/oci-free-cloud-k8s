@@ -69,6 +69,11 @@ spec:
       # Logs a stdout
       stdout_output:
         enabled: true
+      
+      # Enviar eventos a Falcosidekick vía HTTP
+      http_output:
+        enabled: true
+        url: "http://falcosidekick.security-system.svc.cluster.local:2801"
 
     # ServiceMonitor para que Prometheus descubra las métricas
     serviceMonitor:
