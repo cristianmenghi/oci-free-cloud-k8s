@@ -18,7 +18,7 @@ spec:
   chart:
     spec:
       chart: falco
-      version: "^4.11.0"  # Incluye Falco 0.41.2+ con fix para CRI panic
+      version: "^4.17.0"  # Including Falco 0.42.0+ to definitely fix CRI panic
       sourceRef:
         kind: HelmRepository
         name: falcosecurity
