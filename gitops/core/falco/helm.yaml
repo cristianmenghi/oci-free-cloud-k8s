@@ -40,6 +40,10 @@ spec:
               values:
               - arm64
 
+    # Driver eBPF para ARM64 (NIVEL RAÍZ)
+    driver:
+      kind: ebpf
+
     # Deshabilitar Docker y Containerd (solo usar CRI-O)
     docker:
       enabled: false
@@ -49,11 +53,7 @@ spec:
 
     # Configuración de Falco
     falco:
-      # Driver eBPF para ARM64
-      driver:
-        kind: ebpf
-      
-      # Métricas nativas de Prometheus (sin output_format)
+      # Métricas nativas de Prometheus
       metrics:
         enabled: true
         interval: 15s
