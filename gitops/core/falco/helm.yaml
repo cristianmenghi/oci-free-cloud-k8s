@@ -33,6 +33,14 @@ spec:
     driver:
       kind: ebpf
     
+    # Configure CRI-O socket for Oracle Cloud (Default for OCI)
+    # This helps avoid the panic in criEngine
+    container_engines:
+      cri:
+        enabled: true
+        sockets:
+          - /run/crio/crio.sock
+    
     # Enable gRPC for falco-exporter
     grpc:
       enabled: true
@@ -53,6 +61,5 @@ spec:
               values:
               - arm64
 
-    # Certs for gRPC (optional, if disabled in exporter)
     grpc_output:
       enabled: false
