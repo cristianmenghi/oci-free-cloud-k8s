@@ -20,4 +20,3 @@ resources:
   - envoy-gateway/flux.yaml
   - envoy-gateway-config/flux.yaml
   - falco/flux.yaml
-  - falco-exporter/flux.yaml
