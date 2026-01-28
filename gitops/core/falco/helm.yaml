@@ -29,7 +29,7 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    # 1. Affinity for the DaemonSet (TOP LEVEL)
+    # 1. Affinity for the DaemonSet
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -40,12 +40,17 @@ spec:
               values:
               - arm64
 
+    # 2. Disable unnecessary socket mounts to prevent Falco from getting confused
+    mounts:
+      docker_socket: false
+      containerd_socket: false
+      crio_socket: true
+
     falco:
-      # 2. Main Falco Configuration
       driver:
         kind: ebpf
       
-      # explicit CRI-O socket
+      # 3. Corrected container_engines block (removed 'containerd' key)
       container_engines:
         docker:
           enabled: false
@@ -53,26 +58,18 @@ spec:
           enabled: true
           sockets:
             - /run/crio/crio.sock
-        containerd:
-          enabled: false
       
-      # 3. Enable Built-in Prometheus Metrics (Replaces falco-exporter)
       metrics:
         enabled: true
         interval: 15s
         output_format: prometheus
       
-      # 4. Disable gRPC for now to avoid TLS errors/panic 
-      # (Metrics don't need it)
       grpc:
         enabled: false
-      
       grpc_output:
         enabled: false
-
       stdout_output:
         enabled: true
 
-    # 5. ServiceMonitor for the built-in metrics
     serviceMonitor:
       enabled: true
