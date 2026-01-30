@@ -18,7 +18,7 @@ spec:
   chart:
     spec:
       chart: falco
-      version: "^4.17.0"  # Including Falco 0.42.0+ to definitely fix CRI panic
+      version: "^4.22.0"  # Including Falco 0.42.0+ to definitely fix CRI panic
       sourceRef:
         kind: HelmRepository
         name: falcosecurity
@@ -42,7 +42,7 @@ spec:
 
     # Driver eBPF para ARM64 (NIVEL RAÍZ)
     driver:
-      kind: ebpf
+      kind: modern_ebpf
 
     # Forzar imagen Falco 0.42.0 (bug fix)
     image:
