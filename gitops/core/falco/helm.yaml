@@ -18,7 +18,7 @@ spec:
   chart:
     spec:
       chart: falco
-      version: "^4.22.0"  # Including Falco 0.42.0+ to definitely fix CRI panic
+      version: "^7.0.0"  # Including Falco 0.42.0+ to definitely fix CRI panic
       sourceRef:
         kind: HelmRepository
         name: falcosecurity
@@ -49,11 +49,11 @@ spec:
       tag: 0.42.0
 
     # Deshabilitar Docker y Containerd (solo usar CRI-O)
-    docker:
-      enabled: false
-    
-    containerd:
-      enabled: false
+    collectors:
+      docker:
+        enabled: false
+      containerd:
+        enabled: false
 
     # Configuración de Falco
     falco:
@@ -66,15 +66,15 @@ spec:
       grpc:
         enabled: false
       
-      grpc_output:
+      grpcOutput:
         enabled: false
       
       # Logs a stdout
-      stdout_output:
+      stdoutOutput:
         enabled: true
       
       # Enviar eventos a Falcosidekick vía HTTP
-      http_output:
+      httpOutput:
         enabled: true
         url: "http://falcosidekick.security-system.svc.cluster.local:2801"
 
