@@ -61,6 +61,11 @@ spec:
       metrics:
         enabled: true
         interval: 15s
+        
+      # Webserver para exponer métricas
+      webserver:
+        enabled: true
+        prometheus_metrics_enabled: true
       
       # Deshabilitar gRPC
       grpc:
