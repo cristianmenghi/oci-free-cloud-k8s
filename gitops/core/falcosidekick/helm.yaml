@@ -39,13 +39,9 @@ spec:
       redis:
         storageEnabled: true
       
-      # Inyectar credenciales desde Secret
-      env:
-        - name: FALCOSIDEKICK_UI_USER
-          valueFrom:
-            secretKeyRef:
-              name: falcosidekick-ui-secret
-              key: auth
+      # Inyectar credenciales desde Secret (vía envFrom)
+      existingSecret: falcosidekick-ui-secret
+
       
     # Affinity para ARM64
     affinity:
