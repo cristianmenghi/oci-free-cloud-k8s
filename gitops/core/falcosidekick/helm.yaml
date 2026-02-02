@@ -33,20 +33,19 @@ spec:
     config:
       debug: true
     
-    # Inyectar credenciales desde Secret para evitar texto plano en git
-    extraEnv:
-      - name: FALCOSIDEKICK_UI_USER
-        valueFrom:
-          secretKeyRef:
-            name: falcosidekick-ui-secret
-            key: auth
-      
-    # Habilitar WebUI
     webui:
       enabled: true
       # Configuración de la UI
       redis:
         storageEnabled: true
+      
+      # Inyectar credenciales desde Secret
+      extraEnv:
+        - name: FALCOSIDEKICK_UI_USER
+          valueFrom:
+            secretKeyRef:
+              name: falcosidekick-ui-secret
+              key: auth
       
     # Affinity para ARM64
     affinity:
