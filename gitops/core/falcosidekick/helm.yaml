@@ -32,6 +32,14 @@ spec:
     # Configuración de Falcosidekick
     config:
       debug: true
+    
+    # Inyectar credenciales desde Secret para evitar texto plano en git
+    extraEnv:
+      - name: FALCOSIDEKICK_UI_USER
+        valueFrom:
+          secretKeyRef:
+            name: falcosidekick-ui-secret
+            key: auth
       
     # Habilitar WebUI
     webui:
