@@ -40,7 +40,7 @@ spec:
         storageEnabled: true
       
       # Inyectar credenciales desde Secret
-      extraEnv:
+      env:
         - name: FALCOSIDEKICK_UI_USER
           valueFrom:
             secretKeyRef:
