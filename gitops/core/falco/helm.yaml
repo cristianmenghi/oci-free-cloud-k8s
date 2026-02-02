@@ -61,6 +61,10 @@ spec:
       metrics:
         enabled: true
         interval: 15s
+
+      # Salida en JSON para Falcosidekick
+      json_output: true
+
         
       # Webserver para exponer métricas
       webserver:

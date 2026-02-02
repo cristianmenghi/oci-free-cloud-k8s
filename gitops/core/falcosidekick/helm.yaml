@@ -31,7 +31,7 @@ spec:
   values:
     # Configuración de Falcosidekick
     config:
-      debug: false
+      debug: true
       
     # Habilitar WebUI
     webui:
