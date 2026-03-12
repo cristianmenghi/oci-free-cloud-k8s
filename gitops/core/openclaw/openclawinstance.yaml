@@ -13,18 +13,7 @@ spec:
       size: 10Gi
   config:
     raw:
-      models:
-        deepseek-reasoner:
-          provider: openai
-          name: deepseek-reasoner
-          baseUrl: https://api.deepseek.com/v1
-          apiKeyRef: DEEPSEEK_API_KEY
-        deepseek-chat:
-          provider: openai
-          name: deepseek-chat
-          baseUrl: https://api.deepseek.com/v1
-          apiKeyRef: DEEPSEEK_API_KEY
       agents:
         defaults:
           model:
-            primary: "deepseek-chat"
+            primary: "deepseek/chat"
