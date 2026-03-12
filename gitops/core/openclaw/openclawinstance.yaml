@@ -13,6 +13,10 @@ spec:
       size: 10Gi
   config:
     raw:
+      gateway:
+        controlUi:
+          allowedOrigins:
+            - "*"
       agents:
         defaults:
           model:
