@@ -14,11 +14,13 @@ spec:
   config:
     raw:
       gateway:
-        auth:
-          mode: none
         controlUi:
           allowedOrigins:
             - "*"
+            - "http://localhost:18789"
+            - "ws://localhost:18789"
+            - "http://localhost:18790"
+            - "ws://localhost:18790"
           dangerouslyDisableDeviceAuth: true
       agents:
         defaults:
