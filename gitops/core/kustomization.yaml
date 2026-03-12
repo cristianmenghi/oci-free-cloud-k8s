@@ -21,3 +21,4 @@ resources:
   - envoy-gateway-config/flux.yaml
   - falco/flux.yaml
   - falcosidekick/flux.yaml
+  - picoclaw/flux.yaml
