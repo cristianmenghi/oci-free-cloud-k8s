@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: openclaw-operator
+  namespace: flux-system
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: openclaw-operator
+      version: '*' # Use latest version matching semver if specified, else latest
+      sourceRef:
+        kind: HelmRepository
+        name: openclaw-operator
+  targetNamespace: openclaw-operator-system
+  install:
+    createNamespace: true
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace

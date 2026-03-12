@@ -1,0 +1,30 @@
+apiVersion: openclaw.rocks/v1alpha1
+kind: OpenClawInstance
+metadata:
+  name: my-agent
+  namespace: openclaw
+spec:
+  envFrom:
+    - secretRef:
+        name: openclaw-api-keys
+  storage:
+    persistence:
+      enabled: true
+      size: 10Gi
+  config:
+    raw:
+      models:
+        deepseek-reasoner:
+          provider: openai
+          name: deepseek-reasoner
+          baseUrl: https://api.deepseek.com/v1
+          apiKeyRef: DEEPSEEK_API_KEY
+        deepseek-chat:
+          provider: openai
+          name: deepseek-chat
+          baseUrl: https://api.deepseek.com/v1
+          apiKeyRef: DEEPSEEK_API_KEY
+      agents:
+        defaults:
+          model:
+            primary: "deepseek-chat"

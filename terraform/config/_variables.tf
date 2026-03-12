@@ -142,3 +142,24 @@ variable "slack_fluxcd_token" {
   sensitive   = true
   default     = ""
 }
+
+variable "openclaw_openai_api_key" {
+  description = "OpenAI API Key for OpenClaw"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "openclaw_anthropic_api_key" {
+  description = "Anthropic API Key for OpenClaw"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "openclaw_deepseek_api_key" {
+  description = "DeepSeek API Key for OpenClaw"
+  type        = string
+  sensitive   = true
+  default     = ""
+}

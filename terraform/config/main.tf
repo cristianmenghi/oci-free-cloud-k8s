@@ -17,6 +17,9 @@ module "externalsecrets" {
   github_flux_webhook_token = var.github_flux_webhook_token
   slack_fluxcd_token = var.slack_fluxcd_token
   gh_token = var.gh_token
+  openclaw_openai_api_key    = var.openclaw_openai_api_key
+  openclaw_anthropic_api_key = var.openclaw_anthropic_api_key
+  openclaw_deepseek_api_key  = var.openclaw_deepseek_api_key
 
 }
 

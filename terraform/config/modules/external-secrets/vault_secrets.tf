@@ -222,3 +222,19 @@ resource "oci_vault_secret" "slack_fluxcd_token" {
     content      = base64encode(var.slack_fluxcd_token)
   }
 }
+
+resource "oci_vault_secret" "openclaw_api_keys" {
+  count          = (var.openclaw_openai_api_key != "" || var.openclaw_anthropic_api_key != "" || var.openclaw_deepseek_api_key != "") ? 1 : 0
+  compartment_id = var.compartment_id
+  secret_name    = "openclaw-api-keys-v3"
+  vault_id       = var.vault_id
+  key_id         = oci_kms_key.external_secrets.id
+  secret_content {
+    content_type = "BASE64"
+    content      = base64encode(jsonencode({
+      openai    = var.openclaw_openai_api_key
+      anthropic = var.openclaw_anthropic_api_key
+      deepseek  = var.openclaw_deepseek_api_key
+    }))
+  }
+}

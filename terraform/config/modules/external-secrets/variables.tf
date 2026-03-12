@@ -30,3 +30,6 @@ variable "slack_api_url" { type = string }
 variable "github_flux_webhook_token" { type = string }
 variable "slack_fluxcd_token" { type = string }
 variable "gh_token" { type = string }
+variable "openclaw_openai_api_key" { type = string }
+variable "openclaw_anthropic_api_key" { type = string }
+variable "openclaw_deepseek_api_key" { type = string }
