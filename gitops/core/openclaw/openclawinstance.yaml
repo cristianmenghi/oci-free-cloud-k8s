@@ -28,4 +28,4 @@ spec:
       agents:
         defaults:
           model:
-            primary: "deepseek/chat"
+            primary: "openai/gpt-4o"
