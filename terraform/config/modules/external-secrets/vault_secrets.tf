@@ -235,6 +235,7 @@ resource "oci_vault_secret" "openclaw_api_keys" {
       openai    = var.openclaw_openai_api_key
       anthropic = var.openclaw_anthropic_api_key
       deepseek  = var.openclaw_deepseek_api_key
+      telegram  = var.openclaw_telegram_bot_token
     }))
   }
 }

@@ -20,6 +20,7 @@ module "externalsecrets" {
   openclaw_openai_api_key    = var.openclaw_openai_api_key
   openclaw_anthropic_api_key = var.openclaw_anthropic_api_key
   openclaw_deepseek_api_key  = var.openclaw_deepseek_api_key
+  openclaw_telegram_bot_token = var.openclaw_telegram_bot_token
 
 }
 

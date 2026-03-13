@@ -163,3 +163,10 @@ variable "openclaw_deepseek_api_key" {
   sensitive   = true
   default     = ""
 }
+
+variable "openclaw_telegram_bot_token" {
+  description = "Telegram Bot Token for OpenClaw"
+  type        = string
+  sensitive   = true
+  default     = ""
+}

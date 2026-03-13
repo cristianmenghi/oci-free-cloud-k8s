@@ -22,6 +22,9 @@ spec:
             - "http://localhost:18790"
             - "ws://localhost:18790"
           dangerouslyDisableDeviceAuth: true
+      channels:
+        telegram:
+          enabled: true
       agents:
         defaults:
           model:
