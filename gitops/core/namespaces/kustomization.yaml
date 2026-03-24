@@ -14,4 +14,5 @@ resources:
   - external-secrets.yaml
   - security-system.yaml
   - openclaw.yaml
+  - f1replaytiming.yaml
 
