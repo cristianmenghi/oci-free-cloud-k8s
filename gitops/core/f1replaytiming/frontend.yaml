@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/adn8naiagent/f1replaytiming-frontend:main
+          image: ghcr.io/adn8naiagent/f1replaytiming-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
