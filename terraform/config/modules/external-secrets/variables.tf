@@ -34,3 +34,4 @@ variable "openclaw_openai_api_key" { type = string }
 variable "openclaw_anthropic_api_key" { type = string }
 variable "openclaw_deepseek_api_key" { type = string }
 variable "openclaw_telegram_bot_token" { type = string }
+variable "f1replaytiming_htpasswd" { type = string }

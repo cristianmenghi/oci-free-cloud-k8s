@@ -12,3 +12,4 @@ resources:
   - kube-prometheus-stack-secret.yaml
   - fluxcd-addons-secret.yaml
   - openclaw-api-keys-secret.yaml
+  - f1replaytiming-secret.yaml

@@ -21,6 +21,9 @@ EOT
 cloudflare_api_token = ""
 cloudflare_zone_id   = ""
 
+# F1ReplayTiming basic auth
+f1replaytiming_htpasswd = ""
+
 # GitHub
 gh_org        = "cristianmenghi"
 gh_repository = "oci-free-cloud-k8s"

@@ -70,12 +70,13 @@ locals {
     "dex-grafana-client"         = var.dex_grafana_client_secret
     "dex-s3-proxy-client-secret" = var.dex_s3_proxy_client_secret
     "dex-envoy-client-secret"    = var.dex_envoy_client_secret
-    "s3-proxy-access_key"   = var.s3_proxy_access_key
-    "s3-proxy-secret_key"   = var.s3_proxy_secret_key
+    "s3-proxy-access_key"        = var.s3_proxy_access_key
+    "s3-proxy-secret_key"        = var.s3_proxy_secret_key
     "SLACK_API_URL"              = var.slack_api_url
     "github-flux-webhook-token"  = var.github_flux_webhook_token
     "github-fluxcd-token"        = var.gh_token
     "slack-fluxcd-token"         = var.slack_fluxcd_token
+    "f1replaytiming-htpasswd"    = var.f1replaytiming_htpasswd
   }
 }
 
@@ -231,11 +232,23 @@ resource "oci_vault_secret" "openclaw_api_keys" {
   key_id         = oci_kms_key.external_secrets.id
   secret_content {
     content_type = "BASE64"
-    content      = base64encode(jsonencode({
+    content = base64encode(jsonencode({
       openai    = var.openclaw_openai_api_key
       anthropic = var.openclaw_anthropic_api_key
       deepseek  = var.openclaw_deepseek_api_key
       telegram  = var.openclaw_telegram_bot_token
     }))
+  }
+}
+
+resource "oci_vault_secret" "f1replaytiming_htpasswd" {
+  count          = var.f1replaytiming_htpasswd != "" ? 1 : 0
+  compartment_id = var.compartment_id
+  secret_name    = "f1replaytiming-htpasswd"
+  vault_id       = var.vault_id
+  key_id         = oci_kms_key.external_secrets.id
+  secret_content {
+    content_type = "BASE64"
+    content      = base64encode(var.f1replaytiming_htpasswd)
   }
 }

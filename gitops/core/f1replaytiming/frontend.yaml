@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: f1replaytiming-frontend-config
+  namespace: f1replaytiming
+data:
+  NEXT_PUBLIC_API_URL: "https://f1live.menghi.uy"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: f1replaytiming-frontend
+  namespace: f1replaytiming
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: f1replaytiming-frontend
+  template:
+    metadata:
+      labels:
+        app: f1replaytiming-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/adn8naiagent/f1replaytiming-frontend:main
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: f1replaytiming-frontend-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: f1replaytiming-frontend
+  namespace: f1replaytiming
+spec:
+  selector:
+    app: f1replaytiming-frontend
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

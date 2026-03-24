@@ -1,0 +1,13 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: f1replaytiming-auth
+  namespace: f1replaytiming
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: f1replaytiming
+  basicAuth:
+    users:
+      name: f1replaytiming-basic-auth

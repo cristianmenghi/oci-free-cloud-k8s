@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: f1replaytiming-backend-config
+  namespace: f1replaytiming
+data:
+  FRONTEND_URL: "https://f1live.menghi.uy"
+  STORAGE_MODE: "local"
+  DATA_DIR: "/data"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: f1replaytiming-backend
+  namespace: f1replaytiming
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: f1replaytiming-backend
+  template:
+    metadata:
+      labels:
+        app: f1replaytiming-backend
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/adn8naiagent/f1replaytiming-backend:main
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: f1replaytiming-backend-config
+          volumeMounts:
+            - name: f1data
+              mountPath: /data
+            - name: f1cache
+              mountPath: /data/fastf1-cache
+      volumes:
+        - name: f1data
+          persistentVolumeClaim:
+            claimName: f1data
+        - name: f1cache
+          persistentVolumeClaim:
+            claimName: f1cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: f1replaytiming-backend
+  namespace: f1replaytiming
+spec:
+  selector:
+    app: f1replaytiming-backend
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

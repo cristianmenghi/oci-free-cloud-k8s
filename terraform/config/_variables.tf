@@ -170,3 +170,10 @@ variable "openclaw_telegram_bot_token" {
   sensitive   = true
   default     = ""
 }
+
+variable "f1replaytiming_htpasswd" {
+  description = "Basic Auth htpasswd string for F1ReplayTiming"
+  type        = string
+  sensitive   = true
+  default     = ""
+}

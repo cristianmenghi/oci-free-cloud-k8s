@@ -1,0 +1,15 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: f1replaytiming
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./gitops/core/f1replaytiming
+  prune: true
+  dependsOn:
+    - name: namespaces
+    - name: envoy-gateway
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
