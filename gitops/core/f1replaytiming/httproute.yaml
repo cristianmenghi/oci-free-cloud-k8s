@@ -1,7 +1,27 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: f1replaytiming
+  name: f1replaytiming-frontend
+  namespace: f1replaytiming
+spec:
+  parentRefs:
+    - name: envoy
+      namespace: envoy-gateway
+  hostnames:
+    - "f1live.menghi.uy"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: "/"
+      backendRefs:
+        - name: f1replaytiming-frontend
+          port: 3000
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: f1replaytiming-api
   namespace: f1replaytiming
 spec:
   parentRefs:
@@ -17,10 +37,3 @@ spec:
       backendRefs:
         - name: f1replaytiming-backend
           port: 8000
-    - matches:
-        - path:
-            type: PathPrefix
-            value: "/"
-      backendRefs:
-        - name: f1replaytiming-frontend
-          port: 3000
