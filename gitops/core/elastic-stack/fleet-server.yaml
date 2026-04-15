@@ -12,10 +12,13 @@ spec:
   mode: fleet
   fleetServerEnabled: true
   policyID: eck-fleet-server
+  # TLS para HTTP - ECK genera certs self-signed con SANs internos automáticos
+  # Se agrega elk.menghi.uy como SAN para acceso externo via Gateway
   http:
     tls:
-      certificate:
-        secretName: elastic-fleet-http-tls
+      selfSignedCertificate:
+        subjectAltNames:
+          - dns: elk.menghi.uy
   deployment:
     replicas: 1
     podTemplate:

@@ -5,5 +5,4 @@ resources:
   - elasticsearch.yaml
   - kibana.yaml
   - fleet-server.yaml
-  - certificates.yaml
   - tlsroutes.yaml

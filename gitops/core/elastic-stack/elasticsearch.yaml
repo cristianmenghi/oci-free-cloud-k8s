@@ -9,11 +9,13 @@ spec:
   auth:
     fileRealm:
       - secretName: elastic-credentials
-  # TLS para HTTP con certificado de cert-manager
+  # TLS para HTTP - ECK genera certs self-signed con SANs internos automáticos
+  # Se agrega elk.menghi.uy como SAN para acceso externo via Gateway
   http:
     tls:
-      certificate:
-        secretName: elastic-es-http-tls
+      selfSignedCertificate:
+        subjectAltNames:
+          - dns: elk.menghi.uy
   # Clave de encriptación desde OCI Vault
   secureSettings:
     - secretName: elastic-es-secure-settings
