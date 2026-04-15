@@ -15,4 +15,5 @@ resources:
   - security-system.yaml
   - openclaw.yaml
   - f1replaytiming.yaml
+  - elastic-system.yaml
 

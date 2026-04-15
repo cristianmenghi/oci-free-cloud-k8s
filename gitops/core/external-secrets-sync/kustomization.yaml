@@ -13,3 +13,4 @@ resources:
   - fluxcd-addons-secret.yaml
   - openclaw-api-keys-secret.yaml
   - f1replaytiming-secret.yaml
+  - elastic-secrets.yaml

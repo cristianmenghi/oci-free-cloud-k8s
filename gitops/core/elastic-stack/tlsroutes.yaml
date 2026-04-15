@@ -1,0 +1,35 @@
+# TLSRoute para Elasticsearch (port 9200)
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: elasticsearch
+  namespace: elastic-system
+spec:
+  parentRefs:
+    - name: envoy
+      namespace: envoy-gateway
+      sectionName: elasticsearch
+  hostnames:
+    - "elk.menghi.uy"
+  rules:
+    - backendRefs:
+        - name: elastic-es-http
+          port: 9200
+---
+# TLSRoute para Fleet Server (port 8220)
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: fleet-server
+  namespace: elastic-system
+spec:
+  parentRefs:
+    - name: envoy
+      namespace: envoy-gateway
+      sectionName: fleet-server
+  hostnames:
+    - "elk.menghi.uy"
+  rules:
+    - backendRefs:
+        - name: elastic-agent-http
+          port: 8220

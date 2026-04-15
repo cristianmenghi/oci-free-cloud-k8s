@@ -1,0 +1,79 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: elastic
+  namespace: elastic-system
+spec:
+  version: 9.3.3
+  count: 1
+  elasticsearchRef:
+    name: elastic
+  # TLS para HTTP - Kibana solo acceso interno, self-signed OK
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: false
+  # Clave de encriptación para saved objects desde OCI Vault
+  secureSettings:
+    - secretName: kibana-secure-settings
+  config:
+    # Configuración de Fleet
+    xpack.fleet.agents.elasticsearch.hosts:
+      - "https://elastic-es-http.elastic-system.svc:9200"
+    xpack.fleet.agents.fleet_server.hosts:
+      - "https://elastic-agent-http.elastic-system.svc:8220"
+    xpack.fleet.packages:
+      - name: system
+        version: latest
+      - name: elastic_agent
+        version: latest
+      - name: fleet_server
+        version: latest
+      - name: endpoint
+        version: latest
+    xpack.fleet.agentPolicies:
+      - name: Fleet Server on ECK policy
+        id: eck-fleet-server
+        namespace: default
+        monitoring_enabled:
+          - logs
+          - metrics
+        package_policies:
+          - name: fleet_server-1
+            id: fleet_server-1
+            package:
+              name: fleet_server
+      - name: Elastic Agent on ECK policy
+        id: eck-agent
+        namespace: default
+        monitoring_enabled:
+          - logs
+          - metrics
+        package_policies:
+          - name: system-1
+            id: system-1
+            package:
+              name: system
+          - name: endpoint-1
+            id: endpoint-1
+            package:
+              name: endpoint
+  podTemplate:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - arm64
+      containers:
+        - name: kibana
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 250m
+            limits:
+              memory: 1Gi

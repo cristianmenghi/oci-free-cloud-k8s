@@ -22,6 +22,9 @@ module "externalsecrets" {
   openclaw_deepseek_api_key   = var.openclaw_deepseek_api_key
   openclaw_telegram_bot_token = var.openclaw_telegram_bot_token
   f1replaytiming_htpasswd     = var.f1replaytiming_htpasswd
+  elastic_password            = var.elastic_password
+  elastic_encryption_key      = var.elastic_encryption_key
+  kibana_encryption_key       = var.kibana_encryption_key
 
 }
 

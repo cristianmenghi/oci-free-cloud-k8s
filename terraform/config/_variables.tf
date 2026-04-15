@@ -177,3 +177,24 @@ variable "f1replaytiming_htpasswd" {
   sensitive   = true
   default     = ""
 }
+
+variable "elastic_password" {
+  description = "Password for the Elasticsearch elastic user"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "elastic_encryption_key" {
+  description = "Encryption key for Elasticsearch (min 32 characters)"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "kibana_encryption_key" {
+  description = "Encryption key for Kibana saved objects (min 32 characters)"
+  type        = string
+  sensitive   = true
+  default     = ""
+}

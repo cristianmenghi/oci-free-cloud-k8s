@@ -77,6 +77,9 @@ locals {
     "github-fluxcd-token"        = var.gh_token
     "slack-fluxcd-token"         = var.slack_fluxcd_token
     "f1replaytiming-htpasswd"    = var.f1replaytiming_htpasswd
+    "elastic-password"           = var.elastic_password
+    "elastic-encryption-key"     = var.elastic_encryption_key
+    "kibana-encryption-key"      = var.kibana_encryption_key
   }
 }
 
@@ -250,5 +253,41 @@ resource "oci_vault_secret" "f1replaytiming_htpasswd" {
   secret_content {
     content_type = "BASE64"
     content      = base64encode(var.f1replaytiming_htpasswd)
+  }
+}
+
+resource "oci_vault_secret" "elastic_password" {
+  count          = var.elastic_password != "" ? 1 : 0
+  compartment_id = var.compartment_id
+  secret_name    = "elastic-password-v1"
+  vault_id       = var.vault_id
+  key_id         = oci_kms_key.external_secrets.id
+  secret_content {
+    content_type = "BASE64"
+    content      = base64encode(var.elastic_password)
+  }
+}
+
+resource "oci_vault_secret" "elastic_encryption_key" {
+  count          = var.elastic_encryption_key != "" ? 1 : 0
+  compartment_id = var.compartment_id
+  secret_name    = "elastic-encryption-key-v1"
+  vault_id       = var.vault_id
+  key_id         = oci_kms_key.external_secrets.id
+  secret_content {
+    content_type = "BASE64"
+    content      = base64encode(var.elastic_encryption_key)
+  }
+}
+
+resource "oci_vault_secret" "kibana_encryption_key" {
+  count          = var.kibana_encryption_key != "" ? 1 : 0
+  compartment_id = var.compartment_id
+  secret_name    = "kibana-encryption-key-v1"
+  vault_id       = var.vault_id
+  key_id         = oci_kms_key.external_secrets.id
+  secret_content {
+    content_type = "BASE64"
+    content      = base64encode(var.kibana_encryption_key)
   }
 }

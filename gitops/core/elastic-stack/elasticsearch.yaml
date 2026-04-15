@@ -1,0 +1,59 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elastic
+  namespace: elastic-system
+spec:
+  version: 9.3.3
+  # Referencia al secret con la contraseña del usuario elastic (desde OCI Vault)
+  auth:
+    fileRealm:
+      - secretName: elastic-credentials
+  # TLS para HTTP con certificado de cert-manager
+  http:
+    tls:
+      certificate:
+        secretName: elastic-es-http-tls
+  # Clave de encriptación desde OCI Vault
+  secureSettings:
+    - secretName: elastic-es-secure-settings
+  nodeSets:
+    - name: default
+      count: 1
+      config:
+        # Single node - no discovery necesaria
+        node.store.allow_mmap: false
+        # Habilitar Security
+        xpack.security.enabled: true
+        xpack.security.authc.api_key.enabled: true
+      podTemplate:
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: kubernetes.io/arch
+                        operator: In
+                        values:
+                          - arm64
+          containers:
+            - name: elasticsearch
+              resources:
+                requests:
+                  memory: 2Gi
+                  cpu: 500m
+                limits:
+                  memory: 2Gi
+              env:
+                - name: ES_JAVA_OPTS
+                  value: "-Xms1g -Xmx1g"
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 10Gi
