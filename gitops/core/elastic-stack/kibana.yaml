@@ -73,7 +73,16 @@ spec:
         - name: kibana
           resources:
             requests:
-              memory: 1Gi
-              cpu: 250m
+              memory: 2Gi
+              cpu: 500m
             limits:
-              memory: 1Gi
+              memory: 2Gi
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: 5601
+              scheme: HTTPS
+            initialDelaySeconds: 120
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 10
