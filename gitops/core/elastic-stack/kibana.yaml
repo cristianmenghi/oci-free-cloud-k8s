@@ -77,12 +77,23 @@ spec:
               cpu: 100m
             limits:
               memory: 2Gi
+          # startupProbe: permite hasta 10 min de boot (20 intentos * 30s)
+          # El readinessProbe no se activa hasta que el startup tenga éxito
+          startupProbe:
+            httpGet:
+              path: /login
+              port: 5601
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 20
+            successThreshold: 1
           readinessProbe:
             httpGet:
               path: /login
               port: 5601
               scheme: HTTPS
-            initialDelaySeconds: 120
             periodSeconds: 30
             timeoutSeconds: 10
-            failureThreshold: 10
+            failureThreshold: 5
