@@ -24,8 +24,8 @@ spec:
       - "https://elk.menghi.uy:9200"
     xpack.fleet.agents.fleet_server.hosts:
       - "https://elk.menghi.uy:8220"
-    # Output explícito con FQDN público — evita que el UI quede bloqueado
-    # y garantiza que los agentes usen la URL externa para enviar datos
+    # Output explícito: garantiza que los agentes envíen datos al FQDN público
+    # sin este bloque los agentes pueden quedar apuntando a la URL interna .svc
     xpack.fleet.outputs:
       - id: fleet-default-output
         name: default
@@ -35,8 +35,7 @@ spec:
         is_default: true
         is_default_monitoring: true
         ssl:
-          # El cert de ES es self-signed de ECK — deshabilitar verificación
-          # o distribuir el CA de ECK a los agentes
+          # Cert auto-firmado de ECK — los agentes externos no tienen el CA
           verification_mode: "none"
     xpack.fleet.packages:
       - name: system
