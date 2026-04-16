@@ -17,6 +17,8 @@ spec:
   secureSettings:
     - secretName: kibana-secure-settings
   config:
+    # Agentless solo es para Elastic Cloud — deshabilitar en self-managed
+    xpack.fleet.agentless.enabled: false
     # Fleet usa FQDN público para que agentes externos puedan conectarse
     xpack.fleet.agents.elasticsearch.hosts:
       - "https://elk.menghi.uy:9200"
