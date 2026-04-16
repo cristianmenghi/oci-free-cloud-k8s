@@ -5,10 +5,8 @@ metadata:
   namespace: elastic-system
 spec:
   version: 9.3.3
-  # Referencia al secret con la contraseña del usuario elastic (desde OCI Vault)
-  auth:
-    fileRealm:
-      - secretName: elastic-credentials
+  # ECK auto-genera la contraseña del usuario elastic
+  # y la almacena en el secret: elastic-es-elastic-user (key: elastic)
   # TLS para HTTP - ECK genera certs self-signed con SANs internos automáticos
   # Se agrega elk.menghi.uy como SAN para acceso externo via Gateway
   http:

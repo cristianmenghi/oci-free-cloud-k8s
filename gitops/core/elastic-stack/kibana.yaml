@@ -17,11 +17,11 @@ spec:
   secureSettings:
     - secretName: kibana-secure-settings
   config:
-    # Configuración de Fleet
+    # Fleet usa FQDN público para que agentes externos puedan conectarse
     xpack.fleet.agents.elasticsearch.hosts:
-      - "https://elastic-es-http.elastic-system.svc:9200"
+      - "https://elk.menghi.uy:9200"
     xpack.fleet.agents.fleet_server.hosts:
-      - "https://elastic-agent-http.elastic-system.svc:8220"
+      - "https://elk.menghi.uy:8220"
     xpack.fleet.packages:
       - name: system
         version: latest
