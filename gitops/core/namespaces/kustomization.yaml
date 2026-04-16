@@ -13,7 +13,6 @@ resources:
   - dex.yaml
   - external-secrets.yaml
   - security-system.yaml
-  - openclaw.yaml
   - f1replaytiming.yaml
   - elastic-system.yaml
 
