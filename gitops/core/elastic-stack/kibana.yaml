@@ -19,7 +19,10 @@ spec:
   config:
     # Agentless solo es para Elastic Cloud — deshabilitar en self-managed
     xpack.fleet.agentless.enabled: false
-    # Fleet Server host público — para enrollment de agentes externos
+    # Estos dos settings son el mecanismo oficial para actualizar el output
+    # default de Fleet desde el config file (no via API)
+    xpack.fleet.agents.elasticsearch.hosts:
+      - "https://elk.menghi.uy:9200"
     xpack.fleet.agents.fleet_server.hosts:
       - "https://elk.menghi.uy:8220"
     # Pre-instalar paquetes necesarios (no crea políticas preconfigured)
