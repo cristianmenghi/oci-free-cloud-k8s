@@ -22,6 +22,20 @@ spec:
       - "https://elk.menghi.uy:9200"
     xpack.fleet.agents.fleet_server.hosts:
       - "https://elk.menghi.uy:8220"
+    # Output explícito con FQDN público — evita que el UI quede bloqueado
+    # y garantiza que los agentes usen la URL externa para enviar datos
+    xpack.fleet.outputs:
+      - id: fleet-default-output
+        name: default
+        type: elasticsearch
+        hosts:
+          - "https://elk.menghi.uy:9200"
+        is_default: true
+        is_default_monitoring: true
+        ssl:
+          # El cert de ES es self-signed de ECK — deshabilitar verificación
+          # o distribuir el CA de ECK a los agentes
+          verification_mode: "none"
     xpack.fleet.packages:
       - name: system
         version: latest
