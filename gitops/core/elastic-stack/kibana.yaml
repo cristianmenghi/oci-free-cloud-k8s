@@ -19,24 +19,10 @@ spec:
   config:
     # Agentless solo es para Elastic Cloud — deshabilitar en self-managed
     xpack.fleet.agentless.enabled: false
-    # Fleet usa FQDN público para que agentes externos puedan conectarse
-    xpack.fleet.agents.elasticsearch.hosts:
-      - "https://elk.menghi.uy:9200"
+    # Fleet Server host público — para enrollment de agentes externos
     xpack.fleet.agents.fleet_server.hosts:
       - "https://elk.menghi.uy:8220"
-    # Output explícito: garantiza que los agentes envíen datos al FQDN público
-    # sin este bloque los agentes pueden quedar apuntando a la URL interna .svc
-    xpack.fleet.outputs:
-      - id: fleet-default-output
-        name: default
-        type: elasticsearch
-        hosts:
-          - "https://elk.menghi.uy:9200"
-        is_default: true
-        is_default_monitoring: true
-        ssl:
-          # Cert auto-firmado de ECK — los agentes externos no tienen el CA
-          verification_mode: "none"
+    # Pre-instalar paquetes necesarios (no crea políticas preconfigured)
     xpack.fleet.packages:
       - name: system
         version: latest
@@ -46,33 +32,6 @@ spec:
         version: latest
       - name: endpoint
         version: latest
-    xpack.fleet.agentPolicies:
-      - name: Fleet Server on ECK policy
-        id: eck-fleet-server
-        namespace: default
-        monitoring_enabled:
-          - logs
-          - metrics
-        package_policies:
-          - name: fleet_server-1
-            id: fleet_server-1
-            package:
-              name: fleet_server
-      - name: Elastic Agent on ECK policy
-        id: eck-agent
-        namespace: default
-        monitoring_enabled:
-          - logs
-          - metrics
-        package_policies:
-          - name: system-1
-            id: system-1
-            package:
-              name: system
-          - name: endpoint-1
-            id: endpoint-1
-            package:
-              name: endpoint
   podTemplate:
     spec:
       affinity:
