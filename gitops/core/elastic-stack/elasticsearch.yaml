@@ -16,9 +16,6 @@ spec:
       selfSignedCertificate:
         subjectAltNames:
           - dns: elk.menghi.uy
-  # Clave de encriptación desde OCI Vault
-  secureSettings:
-    - secretName: elastic-es-secure-settings
   nodeSets:
     - name: default
       count: 1
