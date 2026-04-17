@@ -8,5 +8,7 @@ spec:
     logins: ["admin"]
     kubernetes_labels:
       "*": "*"
+    app_labels:
+      "*": "*"
     kubernetes_groups: ["system:masters"]
   deny: {}
