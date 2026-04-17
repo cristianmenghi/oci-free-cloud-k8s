@@ -1,0 +1,13 @@
+apiVersion: resources.teleport.dev/v1
+kind: TeleportAppV3
+metadata:
+  name: kibana
+  namespace: teleport
+spec:
+  app:
+    name: kibana
+    uri: "https://elastic-kb-http.elastic-system.svc.cluster.local:5601"
+    insecure_skip_verify: true
+    labels:
+      env: "produccion"
+      app: "kibana"
