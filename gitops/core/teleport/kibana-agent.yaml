@@ -22,7 +22,7 @@ spec:
     apps:
       - name: kibana
         uri: "https://elastic-kb-http.elastic-system.svc.cluster.local:5601"
-        insecureSkipVerify: true
+        insecure_skip_verify: true
         labels:
           env: "produccion"
           app: "kibana"
