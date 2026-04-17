@@ -34,6 +34,8 @@ spec:
         auth_service:
           authentication:
             type: github
+          tokens:
+            - "app,node:gitops-kibana-app-token-secret"
     authentication:
       type: github
       localAuth: true
@@ -51,13 +53,3 @@ spec:
         existingSecretName: teleport-tls
       service:
         type: ClusterIP
-      teleportConfig:
-        app_service:
-          enabled: "yes"
-          apps:
-            - name: kibana
-              uri: "https://elastic-kb-http.elastic-system.svc.cluster.local:5601"
-              insecure_skip_verify: true
-              labels:
-                env: "produccion"
-                app: "kibana"

@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: teleport-kibana-agent
+  namespace: teleport
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: teleport-kube-agent
+      version: "18.6.0"
+      sourceRef:
+        kind: HelmRepository
+        name: teleport
+      interval: 5m
+  releaseName: teleport-kibana-agent
+  values:
+    roles: "app"
+    authToken: "gitops-kibana-app-token-secret"
+    proxyAddr: "teleport.menghi.uy:443"
+    apps:
+      - name: kibana
+        uri: "https://elastic-kb-http.elastic-system.svc.cluster.local:5601"
+        insecureSkipVerify: true
+        labels:
+          env: "produccion"
+          app: "kibana"
