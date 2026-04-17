@@ -7,6 +7,5 @@ metadata:
     env: "produccion"
     app: "kibana"
 spec:
-  description: "kibana dashboard"
   uri: "https://elastic-kb-http.elastic-system.svc.cluster.local:5601"
   insecure_skip_verify: true
