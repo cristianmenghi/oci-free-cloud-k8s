@@ -5,4 +5,3 @@ resources:
   - helm.yaml
   - httproute.yaml
   - backend.yaml
-  - kibana-app.yaml
