@@ -9,6 +9,7 @@ spec:
       namespace: envoy-gateway
   hostnames:
     - "teleport.menghi.uy"
+    - "*.teleport.menghi.uy"
   rules:
     - matches:
         - path:
