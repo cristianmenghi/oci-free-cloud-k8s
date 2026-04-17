@@ -10,6 +10,7 @@ spec:
   hostnames:
     - "teleport.menghi.uy"
     - "*.teleport.menghi.uy"
+    - "kibana.menghi.uy"
   rules:
     - matches:
         - path:
