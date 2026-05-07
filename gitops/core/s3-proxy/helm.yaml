@@ -23,6 +23,8 @@ spec:
       interval: 5m
   releaseName: s3-proxy
   values:
+    image:
+      repository: docker.io/oxynozeta/s3-proxy
     envFrom:
       - secretRef:
           name: s3-proxy-creds
