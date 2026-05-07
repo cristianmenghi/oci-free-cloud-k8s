@@ -92,4 +92,10 @@ resource "oci_containerengine_node_pool" "k8s_node_pool" {
     value = "k8s-cluster"
   }
   ssh_public_key = var.ssh_public_key
+
+  timeouts {
+    create = "90m"
+    update = "90m"
+    delete = "90m"
+  }
 }
