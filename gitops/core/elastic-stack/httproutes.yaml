@@ -1,0 +1,48 @@
+# HTTPRoute para Elasticsearch (port 9200)
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: elasticsearch
+  namespace: elastic-system
+spec:
+  parentRefs:
+    - name: envoy
+      namespace: envoy-gateway
+      sectionName: elasticsearch
+  hostnames:
+    - "elk.menghi.uy"
+  rules:
+    - backendRefs:
+        - name: elastic-es-http
+          port: 9200
+      # Usar Envoy extension para saltear validación TLS hacia el backend (ECK autogenerado)
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: gateway.envoyproxy.io
+            kind: Backend
+            name: elastic-es-backend
+---
+# HTTPRoute para Fleet Server (port 8220)
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: fleet-server
+  namespace: elastic-system
+spec:
+  parentRefs:
+    - name: envoy
+      namespace: envoy-gateway
+      sectionName: fleet-server
+  hostnames:
+    - "elk.menghi.uy"
+  rules:
+    - backendRefs:
+        - name: elastic-agent-http
+          port: 8220
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: gateway.envoyproxy.io
+            kind: Backend
+            name: fleet-server-backend

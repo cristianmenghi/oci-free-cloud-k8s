@@ -1,0 +1,25 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: elastic-es-backend
+  namespace: elastic-system
+spec:
+  endpoints:
+    - fqdn:
+        hostname: elastic-es-http.elastic-system.svc.cluster.local
+        port: 9200
+  tls:
+    insecureSkipVerify: true
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: fleet-server-backend
+  namespace: elastic-system
+spec:
+  endpoints:
+    - fqdn:
+        hostname: elastic-agent-http.elastic-system.svc.cluster.local
+        port: 8220
+  tls:
+    insecureSkipVerify: true

@@ -32,23 +32,29 @@ spec:
             name: wildcard-menghi.uy-tls-cert
     - name: elasticsearch
       hostname: "elk.menghi.uy"
-      protocol: TLS
+      protocol: HTTPS
       port: 9200
       allowedRoutes:
         namespaces:
           from: All
         kinds:
-          - kind: TLSRoute
+          - kind: HTTPRoute
       tls:
-        mode: Passthrough
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: wildcard-menghi.uy-tls-cert
     - name: fleet-server
       hostname: "elk.menghi.uy"
-      protocol: TLS
+      protocol: HTTPS
       port: 8220
       allowedRoutes:
         namespaces:
           from: All
         kinds:
-          - kind: TLSRoute
+          - kind: HTTPRoute
       tls:
-        mode: Passthrough
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: wildcard-menghi.uy-tls-cert

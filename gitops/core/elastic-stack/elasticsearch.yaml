@@ -20,9 +20,7 @@ spec:
       config:
         # Single node - no discovery necesaria
         node.store.allow_mmap: false
-        # Habilitar Security
-        xpack.security.enabled: true
-        xpack.security.authc.api_key.enabled: true
+        # xpack.security es gestionado internamente por ECK 9.x (no configurar aquí)
       podTemplate:
         spec:
           affinity:
