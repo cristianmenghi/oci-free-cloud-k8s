@@ -14,7 +14,7 @@ metadata:
   namespace: teleport
 spec:
   interval: 10m
-  timeout: 5m
+  timeout: 15m
   chart:
     spec:
       chart: teleport-cluster
@@ -24,6 +24,14 @@ spec:
         name: teleport
       interval: 5m
   releaseName: teleport-cluster
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
   values:
     chartMode: standalone
     clusterName: teleport.menghi.uy
