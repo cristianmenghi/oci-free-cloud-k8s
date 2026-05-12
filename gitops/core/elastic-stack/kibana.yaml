@@ -20,7 +20,8 @@ spec:
     # Agentless solo es para Elastic Cloud — deshabilitar en self-managed
     xpack.fleet.agentless.enabled: false
     # Estos dos settings son el mecanismo oficial para actualizar el output
-    # default de Fleet desde el config file (no via API)
+    # default de Fleet desde el config file. Usamos el dominio público para
+    # que los agentes externos (fuera del cluster) puedan conectarse.
     xpack.fleet.agents.elasticsearch.hosts:
       - "https://elk.menghi.uy:9200"
     xpack.fleet.agents.fleet_server.hosts:
@@ -35,6 +36,17 @@ spec:
         version: latest
       - name: endpoint
         version: latest
+    # Autocrear la política eck-fleet-server que necesita el pod de Fleet Server
+    xpack.fleet.agentPolicies:
+      - name: Fleet Server on ECK policy
+        id: eck-fleet-server
+        is_default_fleet_server: true
+        namespace: default
+        package_policies:
+          - name: fleet_server-1
+            id: fleet_server-1
+            package:
+              name: fleet_server
   podTemplate:
     spec:
       affinity:
