@@ -13,15 +13,9 @@ spec:
     - "elk.menghi.uy"
   rules:
     - backendRefs:
-        - name: elastic-es-http
-          port: 9200
-      # Usar Envoy extension para saltear validación TLS hacia el backend (ECK autogenerado)
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: gateway.envoyproxy.io
-            kind: Backend
-            name: elastic-es-backend
+        - group: gateway.envoyproxy.io
+          kind: Backend
+          name: elastic-es-backend
 ---
 # HTTPRoute para Fleet Server (port 8220)
 apiVersion: gateway.networking.k8s.io/v1
@@ -38,11 +32,6 @@ spec:
     - "elk.menghi.uy"
   rules:
     - backendRefs:
-        - name: elastic-agent-http
-          port: 8220
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: gateway.envoyproxy.io
-            kind: Backend
-            name: fleet-server-backend
+        - group: gateway.envoyproxy.io
+          kind: Backend
+          name: fleet-server-backend
