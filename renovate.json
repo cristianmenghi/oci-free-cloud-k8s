@@ -8,7 +8,7 @@
   "terraform": {},
   "flux": {
     "managerFilePatterns": [
-      "/helm.yaml$/"
+      "/(helm|kibana-agent)\\.yaml$/"
     ]
   },
   "groupName": "all",
