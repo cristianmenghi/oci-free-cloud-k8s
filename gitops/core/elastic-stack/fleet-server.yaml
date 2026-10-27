@@ -4,7 +4,7 @@ metadata:
   name: elastic
   namespace: elastic-system
 spec:
-  version: 9.3.3
+  version: 9.5.5
   kibanaRef:
     name: elastic
   elasticsearchRefs:

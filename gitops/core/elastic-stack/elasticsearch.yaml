@@ -4,7 +4,7 @@ metadata:
   name: elastic
   namespace: elastic-system
 spec:
-  version: 9.3.3
+  version: 9.5.5
   # ECK auto-genera la contraseña del usuario elastic
   # y la almacena en el secret: elastic-es-elastic-user (key: elastic)
   # TLS para HTTP - ECK genera certs self-signed con SANs internos automáticos
